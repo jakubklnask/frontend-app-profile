@@ -7,6 +7,8 @@ transifex_temp = ./temp/babel-plugin-formatjs
 
 NPM_TESTS=build i18n_extract lint test
 
+ATLAS_OPTIONS = --repository jakubklnask/openedx-translations --revision nask-custom
+
 .PHONY: test
 test: $(addprefix test.npm.,$(NPM_TESTS))  ## validate ci suite
 
