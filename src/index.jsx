@@ -16,9 +16,11 @@ import {
 import React, { StrictMode } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import { createRoot } from 'react-dom/client';
+import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Header from '@edx/frontend-component-header';
-import { FooterSlot } from '@edx/frontend-component-footer';
+import { SmartFooterSlot } from '@edx/frontend-component-footer';
 
 import messages from './i18n';
 import configureStore from './data/configureStore';
@@ -28,17 +30,28 @@ import Head from './head/Head';
 
 import AppRoutes from './routes/AppRoutes';
 
+// Create AppLayout to access Redux state
+const AppLayout = () => {
+  const isLoadingProfile = useSelector(state => state.profilePage.isLoadingProfile);
+  
+  return (
+    <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
+      <Header />
+      <main className="flex-grow-1" id="main">
+        <AppRoutes />
+      </main>
+      <SmartFooterSlot loading={isLoadingProfile} />
+    </div>
+  );
+};
+
 const rootNode = createRoot(document.getElementById('root'));
 subscribe(APP_READY, () => {
   rootNode.render(
     <StrictMode>
       <AppProvider store={configureStore()}>
         <Head />
-        <Header />
-        <main id="main">
-          <AppRoutes />
-        </main>
-        <FooterSlot />
+        <AppLayout />
       </AppProvider>
     </StrictMode>,
   );
