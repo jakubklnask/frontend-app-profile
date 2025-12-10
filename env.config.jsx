@@ -2,24 +2,7 @@ import { DIRECT_PLUGIN, PLUGIN_OPERATIONS } from '@openedx/frontend-plugin-frame
 
 const config = {
   pluginSlots: {
-    
-    // Usuwanie przycisków z desktop header
-    'org.openedx.frontend.layout.header_desktop_main_menu.v1': {
-      keepDefault: false,
-      plugins: []
-    },
-    // Usuwanie przycisków z mobile header
-    'org.openedx.frontend.layout.header_mobile_main_menu.v1': {
-      keepDefault: false,
-      plugins: []
-    },
-    // Ukryj widget sidebar (LookingForChallengeWidget)
-    'org.openedx.frontend.learner_dashboard.widget_sidebar.v1': {
-      keepDefault: false,  // To ukryje domyślny LookingForChallengeWidget
-      plugins: []  // Pusta tablica = żadnych custom pluginów, po prostu ukryj wszystko
-    },
-
-     'org.openedx.frontend.layout.footer.v1': {
+    'org.openedx.frontend.layout.footer.v1': {
       plugins: [
         { op: PLUGIN_OPERATIONS.Hide, widgetId: 'default_contents' },
         {
@@ -31,54 +14,43 @@ const config = {
               <footer className="py-3" style={{backgroundColor: '#1B3961'}}>
                 <div className="container">
                   <div className="row align-items-center mb-2">
-                    <div className="col-md-4">
-                     <img src="https://raw.githubusercontent.com/jakubklnask/openedx-nask-static-assets/refs/heads/nask-custom/NASK_logo_RGB_WHITE.svg" alt="NASK" style={{height: '60px'}} />
+                    <div className="col-md-3">
+                      <img src="https://raw.githubusercontent.com/jakubklnask/openedx-nask-static-assets/refs/heads/nask-custom/NASK_logo_RGB_WHITE.svg" alt="NASK" style={{height: '60px'}} />
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                       <p className="mb-0 text-white" style={{fontSize: '0.85rem'}}>
                         <strong>Kontakt:</strong><br/>
                         <a href="mailto:nask@nask.pl" className="text-white text-decoration-none" style={{transition: 'text-decoration 0.2s'}} onMouseEnter={e => e.target.style.textDecoration = 'underline'} onMouseLeave={e => e.target.style.textDecoration = 'none'}>nask@nask.pl</a><br/>
                         tel. 22 380 82 00
                       </p>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                       <p className="mb-0 text-white" style={{fontSize: '0.85rem'}}>
                         <strong>Adres:</strong><br/>
                         Kolska 12, 01-045<br/>
                         Warszawa
                       </p>
                     </div>
+                   
                   </div>
 
                   <hr style={{borderColor: 'rgba(255,255,255,0.2)', margin: '12px 0'}} />
 
                   <div className="row align-items-center">
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                       <small className="text-white" style={{fontSize: '0.75rem'}}>© 2025 NASK. Wszelkie prawa zastrzeżone.</small>
                     </div>
-                    <div className="col-md-4 text-center">
-                      <a 
-                        href="https://nask.pl" 
-                        className="text-white text-decoration-none mx-2" 
-                        style={{fontSize: '0.75rem'}} 
-                        onMouseOver={e => e.target.style.textDecoration = 'underline'} 
-                        onMouseOut={e => e.target.style.textDecoration = 'none'}
-                        title="Strona główna NASK"
-                      >
+                    <div className="col-md-3">
+                      <a href="https://nask.pl" className="text-white text-decoration-none" style={{fontSize: '0.75rem'}} onMouseOver={e => e.target.style.textDecoration = 'underline'} onMouseOut={e => e.target.style.textDecoration = 'none'} title="Strona główna NASK">
                         Strona główna NASK
                       </a>
-                      <a 
-                        href="https://nask.pl/polityka-prywatnosci" 
-                        className="text-white text-decoration-none mx-2" 
-                        style={{fontSize: '0.75rem'}} 
-                        onMouseOver={e => e.target.style.textDecoration = 'underline'} 
-                        onMouseOut={e => e.target.style.textDecoration = 'none'}
-                        title="Polityka prywatności"
-                      >
+                    </div>
+                    <div className="col-md-3">
+                      <a href="https://nask.pl/polityka-prywatnosci" className="text-white text-decoration-none" style={{fontSize: '0.75rem'}} onMouseOver={e => e.target.style.textDecoration = 'underline'} onMouseOut={e => e.target.style.textDecoration = 'none'} title="Polityka prywatności">
                         Polityka prywatności
                       </a>
                     </div>
-                    <div className="col-md-4 text-end">
+                    <div className="col-md-3 text-end">
                       <a href="https://www.facebook.com/NASKpl/" className="text-white mx-2" title="Facebook" style={{fontSize: '1.2rem'}}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
                       </a>
@@ -102,7 +74,25 @@ const config = {
           },
         },
       ]
-    }
+    },
+    'org.openedx.frontend.learner_dashboard.widget_sidebar.v1': {
+      plugins: [
+        {
+          op: PLUGIN_OPERATIONS.Hide,
+          widgetId: 'default_contents',
+        },
+      ]
+    },
+    'org.openedx.frontend.layout.header_desktop_main_menu.v1': {
+      plugins: [
+        { op: PLUGIN_OPERATIONS.Hide, widgetId: 'default_contents' },
+      ],
+    },
+    'org.openedx.frontend.layout.header_mobile_main_menu.v1': {
+      plugins: [
+        { op: PLUGIN_OPERATIONS.Hide, widgetId: 'default_contents' },
+      ],
+    },
   },
 }
 
